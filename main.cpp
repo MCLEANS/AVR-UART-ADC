@@ -9,7 +9,7 @@
 //create UART object
 UART uart;
 
-char querry[] = "MCLEANS";
+char querry[] = "AT";
 char response[] = "OK\n";
 
 
