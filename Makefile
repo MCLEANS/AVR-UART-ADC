@@ -1,19 +1,19 @@
 MCU = atmega2560
-TARGET = blinky
+TARGET = main
 PROGRAMMER =  usbasp
 PORT = usb
-
 CC = avr-g++
-CFLAGS = -Os -D F_CPU=8000000 -mmcu=$(MCU)
-LFLAGS = -D F_CPU=8000000 -mmcu=$(MCU) 
+CFLAGS = -Os -D F_CPU=1000000 -mmcu=$(MCU) --std=c++17
+LFLAGS = -D F_CPU=1000000 -mmcu=$(MCU) 
 
 
 
 hex :
-	$(CC) $(CFLAGS) -c $(TARGET).cpp 
-	$(CC) $(LFLAGS) -o $(TARGET).elf $(TARGET).o
+	$(CC) $(CFLAGS) -c $(TARGET).cpp  UART.cpp 
+	$(CC) $(LFLAGS) -o $(TARGET).elf $(TARGET).o UART.o
 	avr-objcopy -O ihex $(TARGET).elf $(TARGET).hex
 	avr-size --format=avr --mcu=$(MCU) $(TARGET).elf
+
 
 flash :
 	avrdude -c $(PROGRAMMER) -p m2560 -P $(PORT) -U flash:w:$(TARGET).hex
