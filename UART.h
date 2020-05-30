@@ -17,7 +17,7 @@ class UART{
         
         
     private:
-        void set_baudrate();
+        void set_baudrate(uint32_t baud);
         void flush_buffer();
         void send_char(char data);
         char receive_char() const;
