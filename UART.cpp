@@ -48,3 +48,19 @@ void UART::set_baudrate(uint32_t baud){
 			
 	}
 }
+
+void UART::init_UART(uint32_t baudrate){
+	set_baudrate(baudrate);
+	//Enable RECEIVER and TRANSMITER
+	UCSR0B |= (1<<RXEN0) | (1<<TXEN0);
+	//Enable receiver complete Interrupt;
+	UCSR0B |= (1<<RXCIE0);
+	//set character size to 8 bits
+	UCSR0C |= (1<<UCSZ00) | (1<<UCSZ01);
+	//set Asynchronous mode
+	UCSR0C &= ~(1<<UMSEL00);
+	UCSR0C &= ~(1<<UMSEL01);
+	//enable global Interrupt
+	sei();
+	
+}
