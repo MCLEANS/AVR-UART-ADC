@@ -64,3 +64,12 @@ void UART::init_UART(uint32_t baudrate){
 	sei();
 	
 }
+
+void UART::send_char(char data){
+	while(!(UCSR0A & (1<<UDRE0))){}
+	UDR0 = data;
+}
+
+void UART::send_string(char *byte){
+	for(;*byte;byte++) send_char(*byte);
+}
