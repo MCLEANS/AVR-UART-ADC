@@ -7,7 +7,7 @@
 
 #define BUFFER_SIZE 256
 
-char receive_buffer[BUFFER_SIZE];
+
 
 
 
@@ -26,6 +26,7 @@ class UART{
     public:
         uint8_t buffer_position = 0;
         bool endline = false;
+        char receive_buffer[BUFFER_SIZE];
 
     public:
         void init_UART(uint32_t baudrate);

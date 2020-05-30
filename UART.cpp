@@ -70,6 +70,18 @@ void UART::send_char(char data){
 	UDR0 = data;
 }
 
-void UART::send_string(char *byte){
-	for(;*byte;byte++) send_char(*byte);
+void UART::send_string(char *data){
+	for(;*data;data++) send_char(*data);
+}
+
+char UART::receive_char(void) const{
+	return UDR0;
+
+}
+
+void UART::flush_buffer(){
+	for(int i = 0; i < BUFFER_SIZE; i++){
+		receive_buffer[i] = 0x00;
+	}
+	buffer_position = 0;
 }
