@@ -18,20 +18,21 @@ class UART{
         
     private:
         void set_baudrate(uint32_t baud);
-        void flush_buffer();
         void send_char(char data);
-        char receive_char() const;
+        
         
 
     public:
         uint8_t buffer_position = 0;
-        bool endline = false;
+        bool is_endline = false;
         char receive_buffer[BUFFER_SIZE];
 
     public:
-        void init_UART(uint32_t baudrate);
+        void init(uint32_t baudrate);
         void send_string(char *data);
-        void listen();
+        char receive_char() const;
+        void flush_buffer();
+      
 
 
 };

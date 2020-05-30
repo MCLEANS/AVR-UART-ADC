@@ -49,7 +49,7 @@ void UART::set_baudrate(uint32_t baud){
 	}
 }
 
-void UART::init_UART(uint32_t baudrate){
+void UART::init(uint32_t baudrate){
 	set_baudrate(baudrate);
 	//Enable RECEIVER and TRANSMITER
 	UCSR0B |= (1<<RXEN0) | (1<<TXEN0);
