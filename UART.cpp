@@ -1,5 +1,10 @@
 #include "UART.h"
 
+UART::UART(){
+	buffer_position = 0;
+	is_endline = false;
+}
+
 void UART::set_baudrate(uint32_t baud){
 	switch(F_CPU){
 		case 1000000UL:

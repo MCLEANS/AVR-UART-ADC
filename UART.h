@@ -23,11 +23,12 @@ class UART{
         
 
     public:
-        uint8_t buffer_position = 0;
-        bool is_endline = false;
+        uint8_t buffer_position;
+        bool is_endline;
         char receive_buffer[BUFFER_SIZE];
 
     public:
+        UART();
         void init(uint32_t baudrate);
         void send_string(char *data);
         char receive_char() const;

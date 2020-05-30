@@ -9,14 +9,14 @@
 //create UART object
 UART uart;
 
-char querry[] = "AT";
+char querry[] = "MCLEANS";
 char response[] = "OK\n";
 
 
 
 ISR (USART0_RX_vect){
 	uart.receive_buffer[uart.buffer_position] = uart.receive_char();
-
+	
 	if(uart.receive_buffer[uart.buffer_position] == '\n') {
 	uart.is_endline = true;
     }
@@ -27,9 +27,11 @@ ISR (USART0_RX_vect){
 }
 
 
+
 void listen(){
 	if(uart.is_endline){
-        if(strncmp(uart.receive_buffer,querry,(sizeof(querry)/sizeof(char))) == 0){
+		uart.send_string(uart.receive_buffer);
+        if(strncmp(uart.receive_buffer,querry,(sizeof(querry)/sizeof(char))-1) == 0){
 		uart.send_string(response);
 		uart.flush_buffer();
 		}
