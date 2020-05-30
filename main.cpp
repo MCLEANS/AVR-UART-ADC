@@ -32,7 +32,10 @@ void listen(){
 	if(uart.is_endline){
 		
         if(strncmp(uart.receive_buffer,querry,(sizeof(querry)/sizeof(char))-1) == 0){
+		ADCSRA |= (1<<ADSC);
+		_delay_us(500);
 		uart.send_string(response);
+		uart.send_string("\n");
 		uart.flush_buffer();
 		}
 
@@ -56,10 +59,8 @@ ISR(ADC_vect){
 
 	itoa(value,response,10);
 
-	uart.send_string(response);
-	uart.send_string("\n");
 
-	ADCSRA |= (1<<ADSC);
+	
 
 
 }
