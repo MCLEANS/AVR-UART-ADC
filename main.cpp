@@ -30,7 +30,7 @@ ISR (USART0_RX_vect){
 
 void listen(){
 	if(uart.is_endline){
-		uart.send_string(uart.receive_buffer);
+		
         if(strncmp(uart.receive_buffer,querry,(sizeof(querry)/sizeof(char))-1) == 0){
 		uart.send_string(response);
 		uart.flush_buffer();
