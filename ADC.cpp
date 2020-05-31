@@ -14,6 +14,8 @@ void _ADC::init(){
 	ADMUX |= (1<<REFS0);
 	//set ADC data to left adjusted
 	ADMUX |= (1<<ADLAR);
+    //enable global interrupts
+    sei();
 	//Enable ADC
 	ADCSRA |= (1<<ADEN);
 	//start first ADC conversion
