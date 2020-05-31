@@ -14,6 +14,7 @@ class ADC{
         ADC();
         void init();
         uint16_t get_value();
+        void convert();
 };
 
 
