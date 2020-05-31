@@ -10,8 +10,9 @@
 //create UART object
 UART uart;
 //create ADC object
-ADC adc;
+_ADC adc;
 
+char new_line[] = "\n";
 char querry[] = "AT";
 char response[4];
 
@@ -43,11 +44,11 @@ void listen(){
 	if(uart.is_endline){
 		
 		if(strncmp(uart.receive_buffer,querry,(sizeof(querry)/sizeof(char))-1) == 0){
-		adc.convert();
-		_delay_us(500);
-		uart.send_string(response);
-		uart.send_string("\n");
-		uart.flush_buffer();
+			adc.convert();
+			_delay_us(500);
+			uart.send_string(response);
+			uart.send_string(new_line);
+			uart.flush_buffer();
 		}
 
 		else{
@@ -63,7 +64,7 @@ void listen(){
 int main(void)
 {
 	uart.init(9600);
-	adcc.init();
+	adc.init();
 	
     
     while (1) 
