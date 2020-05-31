@@ -1,10 +1,10 @@
 #include "ADC.h"
 
-ADC::ADC(){
-
+_ADC::_ADC(){
+    this->value = 0;
 }
 
-void ADC::init(){
+void _ADC::init(){
     //set ADC prescaler between 5 and 20 for 1MHz clock
 	//Here set to 16
 	ADCSRA |= (1<<ADPS2);
@@ -20,14 +20,14 @@ void ADC::init(){
 	ADCSRA |= (1<<ADSC);
 }
 
-uint16_t ADC::get_value(){
+uint16_t _ADC::get_value(){
     this->value = ADCL >> 6;
 	this->value |= ADCH << 2;
     
     return value;
 }
 
-void ADC::convert(){
+void _ADC::convert(){
     //do an ADC conversion
     ADCSRA |= (1<<ADSC);
 }
