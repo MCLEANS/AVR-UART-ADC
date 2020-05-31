@@ -5,13 +5,13 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
-class ADC{
+class _ADC {
     private:
     private:
     public:
         uint16_t value;
     public:
-        ADC();
+        _ADC();
         void init();
         uint16_t get_value();
         void convert();
