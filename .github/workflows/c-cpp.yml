@@ -1,0 +1,22 @@
+name: AVR-UART-ADC
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: configure
+      run: ./configure
+    - name: Install dependencies
+      run: sudo apt-get install gcc-avr avrdude make
+    - name: Compile code
+      run: make hex
+    
