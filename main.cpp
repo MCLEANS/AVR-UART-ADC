@@ -5,9 +5,12 @@
 #include <string.h>
 
 #include "UART.h"
+#include "ADC.h"
 
 //create UART object
 UART uart;
+//create ADC object
+ADC adc;
 
 char querry[] = "AT";
 char response[4];
@@ -28,11 +31,19 @@ ISR (USART0_RX_vect){
 
 
 
+ISR(ADC_vect){
+	uint16_t adc_value = adc.get_value();
+	itoa(adc_value,response,10);
+}
+
+
+
+
 void listen(){
 	if(uart.is_endline){
 		
-        if(strncmp(uart.receive_buffer,querry,(sizeof(querry)/sizeof(char))-1) == 0){
-		ADCSRA |= (1<<ADSC);
+		if(strncmp(uart.receive_buffer,querry,(sizeof(querry)/sizeof(char))-1) == 0){
+		adc.convert();
 		_delay_us(500);
 		uart.send_string(response);
 		uart.send_string("\n");
@@ -45,47 +56,14 @@ void listen(){
 
 		uart.is_endline = false;
 	}
-
-	
-
 }
 
-ISR(ADC_vect){
 
-	uint16_t value;
-
-	value = ADCL >> 6;
-	value |= ADCH << 2;
-
-	itoa(value,response,10);
-
-
-	
-
-
-}
-
-void init_ADC(){
-	//set ADC prescaler between 5 and 20 for 1MHz clock
-	//Here set to 16
-	ADCSRA |= (1<<ADPS2);
-	//Enable ADC interrupt
-	ADCSRA |= (1<<ADIE);
-	//set ADC reference voltage
-	ADMUX |= (1<<REFS0);
-	//set ADC data to left adjusted
-	ADMUX |= (1<<ADLAR);
-	//Enable ADC
-	ADCSRA |= (1<<ADEN);
-	//start first ADC conversion
-	ADCSRA |= (1<<ADSC);
-
-}
 
 int main(void)
 {
 	uart.init(9600);
-	init_ADC();
+	adcc.init();
 	
     
     while (1) 
