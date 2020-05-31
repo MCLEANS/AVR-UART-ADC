@@ -19,3 +19,15 @@ void ADC::init(){
 	//start first ADC conversion
 	ADCSRA |= (1<<ADSC);
 }
+
+uint16_t ADC::get_value(){
+    this->value = ADCL >> 6;
+	this->value |= ADCH << 2;
+    
+    return value;
+}
+
+void ADC::convert(){
+    //do an ADC conversion
+    ADCSRA |= (1<<ADSC);
+}
