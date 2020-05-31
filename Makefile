@@ -9,8 +9,8 @@ LFLAGS = -D F_CPU=1000000 -mmcu=$(MCU)
 
 
 hex :
-	$(CC) $(CFLAGS) -c $(TARGET).cpp  UART.cpp 
-	$(CC) $(LFLAGS) -o $(TARGET).elf $(TARGET).o UART.o
+	$(CC) $(CFLAGS) -c $(TARGET).cpp  UART.cpp ADC.cpp
+	$(CC) $(LFLAGS) -o $(TARGET).elf $(TARGET).o UART.o ADC.o
 	avr-objcopy -O ihex $(TARGET).elf $(TARGET).hex
 	avr-size --format=avr --mcu=$(MCU) $(TARGET).elf
 
