@@ -18,7 +18,7 @@ class UART{
         
     private:
         void set_baudrate(uint32_t baud);
-        void send_char(char data);
+      
         
         
 
