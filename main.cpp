@@ -14,7 +14,7 @@ _ADC adc;
 
 ADC_channel_value adc_values;
 
-char response[4];
+char response[5];
 
 ISR (USART0_RX_vect){
 	uart.receive_buffer[uart.buffer_position] = uart.receive_char();
