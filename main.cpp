@@ -39,7 +39,7 @@ void listen(){
 			uart.send_char(new_line);
 			uart.flush_buffer();
 		}
-		if(strncmp(uart.receive_buffer,FETCH_ADC0,(sizeof(FETCH_ADC1)/sizeof(char))-1) == 0){
+		if(strncmp(uart.receive_buffer,FETCH_ADC1,(sizeof(FETCH_ADC1)/sizeof(char))-1) == 0){
 			adc.convert();
 			_delay_us(500);
 			itoa(adc_values.channel_1,response,10);
@@ -48,7 +48,7 @@ void listen(){
 			uart.flush_buffer();
 		
 		}
-		if(strncmp(uart.receive_buffer,FETCH_ADC0,(sizeof(FETCH_ADC2)/sizeof(char))-1) == 0){
+		if(strncmp(uart.receive_buffer,FETCH_ADC2,(sizeof(FETCH_ADC2)/sizeof(char))-1) == 0){
 			adc.convert();
 			_delay_us(500);
 			itoa(adc_values.channel_2,response,10);
@@ -57,7 +57,7 @@ void listen(){
 			uart.flush_buffer();
 		
 		}
-		if(strncmp(uart.receive_buffer,FETCH_ADC0,(sizeof(FETCH_ADC3)/sizeof(char))-1) == 0){
+		if(strncmp(uart.receive_buffer,FETCH_ADC3,(sizeof(FETCH_ADC3)/sizeof(char))-1) == 0){
 			adc.convert();
 			_delay_us(500);
 			itoa(adc_values.channel_3,response,10);
@@ -66,7 +66,7 @@ void listen(){
 			uart.flush_buffer();
 		
 		}
-		if(strncmp(uart.receive_buffer,FETCH_ADC0,(sizeof(FETCH_ADC4)/sizeof(char))-1) == 0){
+		if(strncmp(uart.receive_buffer,FETCH_ADC4,(sizeof(FETCH_ADC4)/sizeof(char))-1) == 0){
 			adc.convert();
 			_delay_us(500);
 			itoa(adc_values.channel_4,response,10);
@@ -75,7 +75,7 @@ void listen(){
 			uart.flush_buffer();
 		
 		}
-		if(strncmp(uart.receive_buffer,FETCH_ADC0,(sizeof(FETCH_ADC5)/sizeof(char))-1) == 0){
+		if(strncmp(uart.receive_buffer,FETCH_ADC5,(sizeof(FETCH_ADC5)/sizeof(char))-1) == 0){
 			adc.convert();
 			_delay_us(500);
 			itoa(adc_values.channel_5,response,10);
@@ -84,7 +84,7 @@ void listen(){
 			uart.flush_buffer();
 		
 		}
-		if(strncmp(uart.receive_buffer,FETCH_ADC0,(sizeof(FETCH_ADC6)/sizeof(char))-1) == 0){
+		if(strncmp(uart.receive_buffer,FETCH_ADC6,(sizeof(FETCH_ADC6)/sizeof(char))-1) == 0){
 			adc.convert();
 			_delay_us(500);
 			itoa(adc_values.channel_6,response,10);
@@ -93,7 +93,7 @@ void listen(){
 			uart.flush_buffer();
 		
 		}
-		if(strncmp(uart.receive_buffer,FETCH_ADC0,(sizeof(FETCH_ADC7)/sizeof(char))-1) == 0){
+		if(strncmp(uart.receive_buffer,FETCH_ADC7,(sizeof(FETCH_ADC7)/sizeof(char))-1) == 0){
 			adc.convert();
 			_delay_us(500);
 			itoa(adc_values.channel_7,response,10);
