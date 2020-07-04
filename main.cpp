@@ -8,46 +8,100 @@
 #include "ADC.h"
 #include "commands.h"
 
-//create UART object
+//Peripheral objects
 UART uart;
-//create ADC object
 _ADC adc;
+
+ADC_channel_value adc_values;
 
 char response[4];
 
 ISR (USART0_RX_vect){
 	uart.receive_buffer[uart.buffer_position] = uart.receive_char();
-	
 	if(uart.receive_buffer[uart.buffer_position] == '\n') {
-	uart.is_endline = true;
+		uart.is_endline = true;
     }
-    
     uart.buffer_position++;
-	
-    if(uart.buffer_position > BUFFER_SIZE) uart.buffer_position = 0;
+	if(uart.buffer_position > BUFFER_SIZE) uart.buffer_position = 0;
 }
-
-
 
 ISR(ADC_vect){
-	uint16_t adc_value = adc.get_value();
-	itoa(adc_value,response,10);
+	adc_values = adc.get_value();	
 }
-
-
-
 
 void listen(){
 	if(uart.is_endline){
-		
 		if(strncmp(uart.receive_buffer,FETCH_ADC0,(sizeof(FETCH_ADC0)/sizeof(char))-1) == 0){
 			adc.convert();
 			_delay_us(500);
+			itoa(adc_values.channel_0,response,10);
 			uart.send_string(response);
 			uart.send_char(new_line);
 			uart.flush_buffer();
 		}
-
+		if(strncmp(uart.receive_buffer,FETCH_ADC0,(sizeof(FETCH_ADC1)/sizeof(char))-1) == 0){
+			adc.convert();
+			_delay_us(500);
+			itoa(adc_values.channel_1,response,10);
+			uart.send_string(response);
+			uart.send_char(new_line);
+			uart.flush_buffer();
+		
+		}
+		if(strncmp(uart.receive_buffer,FETCH_ADC0,(sizeof(FETCH_ADC2)/sizeof(char))-1) == 0){
+			adc.convert();
+			_delay_us(500);
+			itoa(adc_values.channel_2,response,10);
+			uart.send_string(response);
+			uart.send_char(new_line);
+			uart.flush_buffer();
+		
+		}
+		if(strncmp(uart.receive_buffer,FETCH_ADC0,(sizeof(FETCH_ADC3)/sizeof(char))-1) == 0){
+			adc.convert();
+			_delay_us(500);
+			itoa(adc_values.channel_3,response,10);
+			uart.send_string(response);
+			uart.send_char(new_line);
+			uart.flush_buffer();
+		
+		}
+		if(strncmp(uart.receive_buffer,FETCH_ADC0,(sizeof(FETCH_ADC4)/sizeof(char))-1) == 0){
+			adc.convert();
+			_delay_us(500);
+			itoa(adc_values.channel_4,response,10);
+			uart.send_string(response);
+			uart.send_char(new_line);
+			uart.flush_buffer();
+		
+		}
+		if(strncmp(uart.receive_buffer,FETCH_ADC0,(sizeof(FETCH_ADC5)/sizeof(char))-1) == 0){
+			adc.convert();
+			_delay_us(500);
+			itoa(adc_values.channel_5,response,10);
+			uart.send_string(response);
+			uart.send_char(new_line);
+			uart.flush_buffer();
+		
+		}
+		if(strncmp(uart.receive_buffer,FETCH_ADC0,(sizeof(FETCH_ADC6)/sizeof(char))-1) == 0){
+			adc.convert();
+			_delay_us(500);
+			itoa(adc_values.channel_6,response,10);
+			uart.send_string(response);
+			uart.send_char(new_line);
+			uart.flush_buffer();
+		
+		}
+		if(strncmp(uart.receive_buffer,FETCH_ADC0,(sizeof(FETCH_ADC7)/sizeof(char))-1) == 0){
+			adc.convert();
+			_delay_us(500);
+			itoa(adc_values.channel_7,response,10);
+			uart.send_string(response);
+			uart.send_char(new_line);
+			uart.flush_buffer();
+		
+		}
 		else{
 			uart.flush_buffer();
 		}
@@ -63,9 +117,7 @@ int main(void)
 	uart.init(9600);
 	adc.init();
 	
-    
-    while (1) 
-    {
+	while (1) {
 		listen();
     }
 }
