@@ -31,8 +31,10 @@ class UART{
         UART();
         void init(uint32_t baudrate);
         void send_string(char *data);
+        void send_char(char data);
         char receive_char() const;
         void flush_buffer();
+
       
 
 
