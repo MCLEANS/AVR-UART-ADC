@@ -43,35 +43,36 @@ ADC_channel_value _ADC::get_value(){
 			break;
 		case 0x63:
 			adc_values.channel_3 = ADCL >> 6;
-			adc_values.channel_3 = ADCH >> 2;
+			adc_values.channel_3 |= ADCH << 2;
 			ADMUX = 0x64;
 			break;
 		case 0x64:
 			adc_values.channel_4 = ADCL >> 6;
-			adc_values.channel_4 = ADCH >> 2;
+			adc_values.channel_4 |= ADCH << 2;
 			ADMUX = 0x65;
 			break;
 		case 0x65:
 			adc_values.channel_5 = ADCL >> 6;
-			adc_values.channel_5 = ADCH >> 2;
+			adc_values.channel_5 |= ADCH << 2;
 			ADMUX = 0x66;
 			break;
 		case 0x66:
 			adc_values.channel_6 = ADCL >> 6;
-			adc_values.channel_6 = ADCH >> 2;
+			adc_values.channel_6 |= ADCH << 2;
 			ADMUX = 0x67;
 			break;
 		case 0x67:
 			adc_values.channel_7 = ADCL >> 6;
-			adc_values.channel_7 = ADCH >> 2;
+			adc_values.channel_7 |= ADCH << 2;
 			ADMUX = 0x60;
 			break;
 		default:
 			break;
 		
 	}
+	convert();
 	
-   return adc_values;
+	 return adc_values;
 }
 
 void _ADC::convert(){
