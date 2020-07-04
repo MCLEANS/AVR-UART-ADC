@@ -7,10 +7,6 @@
 
 #define BUFFER_SIZE 256
 
-
-
-
-
 class UART{
 
     private:
@@ -19,9 +15,6 @@ class UART{
     private:
         void set_baudrate(uint32_t baud);
       
-        
-        
-
     public:
         uint8_t buffer_position;
         bool is_endline;
