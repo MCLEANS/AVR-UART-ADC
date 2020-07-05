@@ -64,6 +64,46 @@ ADC_channel_value _ADC::get_value(){
 		case 0x67:
 			adc_values.channel_7 = ADCL >> 6;
 			adc_values.channel_7 |= ADCH << 2;
+			ADMUX = 0x70;
+			break;
+		case 0x70:
+			adc_values.channel_8 = ADCL >> 6;
+			adc_values.channel_8 |= ADCH << 2;
+			ADMUX = 0x71;
+			break;
+		case 0x71:
+			adc_values.channel_9 = ADCL >> 6;
+			adc_values.channel_9 |= ADCH << 2;
+			ADMUX = 0x72;
+			break;
+		case 0x72:
+			adc_values.channel_10 = ADCL >> 6;
+			adc_values.channel_10 |= ADCH << 2;
+			ADMUX = 0x73;
+			break;
+		case 0x73:
+			adc_values.channel_11 = ADCL >> 6;
+			adc_values.channel_11 |= ADCH << 2;
+			ADMUX = 0x74;
+			break;
+		case 0x74:
+			adc_values.channel_12 = ADCL >> 6;
+			adc_values.channel_12 |= ADCH << 2;
+			ADMUX = 0x75;
+			break;
+		case 0x75:
+			adc_values.channel_13 = ADCL >> 6;
+			adc_values.channel_13 |= ADCH << 2;
+			ADMUX = 0x76;
+			break;
+		case 0x76:
+			adc_values.channel_14 = ADCL >> 6;
+			adc_values.channel_14 |= ADCH << 2;
+			ADMUX = 0x77;
+			break;
+		case 0x77:
+			adc_values.channel_15 = ADCL >> 6;
+			adc_values.channel_15 |= ADCH << 2;
 			ADMUX = 0x60;
 			break;
 		default:
